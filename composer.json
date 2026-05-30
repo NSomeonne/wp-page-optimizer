@@ -1,0 +1,18 @@
+{
+  "name": "nsomeonne/wp-page-optimizer",
+  "description": "WordPress plugin Page Optimizer Pro",
+  "type": "wordpress-plugin",
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
+    "phpstan/phpstan": "^1.11"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WPO\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "lint": "phpstan analyse wp-page-optimizer.php includes/"
+  }
+}

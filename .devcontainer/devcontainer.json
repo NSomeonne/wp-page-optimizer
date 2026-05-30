@@ -1,12 +1,14 @@
 {
   "name": "WPO Codespace",
-  "image": "mcr.microsoft.com/devcontainers/php:8.2",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
   "features": {
     "composer": "latest",
     "wp-cli": "latest"
   },
-  "initializeCommand": "composer install || true",
-  "postCreateCommand": "composer install",
+  "postCreateCommand": "composer install --no-interaction",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -15,8 +17,5 @@
         "esbenp.prettier-vscode"
       ]
     }
-  },
-  "mounts": [
-    "source=.wp-content,target=/workspace/wp-content,type=bind,consistency=cached"
-  ]
+  }
 }

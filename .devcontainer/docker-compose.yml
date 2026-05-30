@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/php:8.2
+    volumes:
+      - ..:/workspace:cached
+      - ../wordpress:/workspace/wordpress:cached
+    working_dir: /workspace
+    command: sleep infinity
+    environment:
+      - COMPOSER_ALLOW_SUPERUSER=1
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:6.5.2-php8.2-apache
+    depends_on:
+      - db
+    ports:
+      - '8080:80'
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ../wordpress:/var/www/html:cached
+      - ..:/var/www/html/wp-content/plugins/wp-page-optimizer:cached
+
+volumes:
+  db_data:
