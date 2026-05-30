@@ -1,0 +1,22 @@
+{
+  "name": "WPO Codespace",
+  "image": "mcr.microsoft.com/devcontainers/php:8.2",
+  "features": {
+    "composer": "latest",
+    "wp-cli": "latest"
+  },
+  "initializeCommand": "composer install || true",
+  "postCreateCommand": "composer install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xabikos.javascriptsnippets",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "mounts": [
+    "source=.wp-content,target=/workspace/wp-content,type=bind,consistency=cached"
+  ]
+}
