@@ -1,0 +1,16 @@
+.env
+.env.*
+node_modules/
+vendor/
+coverage/
+.idea/
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
+wp-config.php
+wp-content/uploads/
+wp-content/backup/
+composer.lock
+phpunit.xml
+phpunit.xml.dist
